@@ -161,6 +161,7 @@ const validationSchema = Yup.object().shape({
     .moreThan(16, 'Debes tener al menos 17 años para registrarte.')
     .required('Por favor, introduce tu edad.'),
   platform: Yup.string().required('Por favor, ingresa la plataforma donde juegas.'),
+  acceptTerms: Yup.boolean().oneOf([true], 'Debe aceptar los términos y condiciones para continuar.'),
 });
 
 
@@ -206,6 +207,7 @@ const FormRegister = () => {
       userId: '',
       age: '',
       platform: '',
+      acceptTerms: false,
     },
     validationSchema,
     onSubmit: (values) => {
@@ -357,6 +359,22 @@ const FormRegister = () => {
           />
           {formik.touched.platform && formik.errors.platform ? (
             <div className="text-red">{formik.errors.platform}</div>
+          ) : null}
+        </div>
+        <div className='mb-4'>
+          <label className="flex items-center gap-2">
+            <input
+              type="checkbox"
+              name="acceptTerms"
+              checked={formik.values.acceptTerms}
+              onChange={formik.handleChange}
+              className="mr-2"
+            />
+            Aceptar
+            <a className='border-b' href="terminos-y-condiciones" target="_blank" rel="noopener noreferrer"> términos y condiciones</a>
+          </label>
+          {formik.touched.acceptTerms && formik.errors.acceptTerms ? (
+            <div className="text-red">{formik.errors.acceptTerms}</div>
           ) : null}
         </div>
         <button className="duration-80 mb-4 w-full cursor-pointer rounded-md border border-transparent bg-primary py-3 px-6 text-center text-base font-medium text-white outline-none transition ease-in-out hover:bg-opacity-80 hover:shadow-signUp focus-visible:shadow-none" type='submit' disabled={loading} >Enviar</button>

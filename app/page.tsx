@@ -19,6 +19,9 @@ export default function Home() {
     <>
       <ScrollUp />
       <Hero />
+      <p>
+
+      </p>
       <Features />
       <SectionOne
         image="/images/rules.svg"
