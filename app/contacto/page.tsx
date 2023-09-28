@@ -11,7 +11,7 @@ const ContactPage = () => {
   return (
     <>
       <Breadcrumb
-        pageName="contáctanos"
+        pageName="Contáctanos"
         description="En este formulario puedes ponerte en contacto con nosotros a traves de correo"
       />
       <section id="contact" className="overflow-hidden pb-16 md:pb-20 lg:pb-28">
