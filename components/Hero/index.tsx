@@ -17,7 +17,7 @@ const Hero = () => {
                 <h1 className="mb-5 text-3xl font-bold leading-tight text-black dark:text-white sm:text-4xl sm:leading-tight md:text-5xl md:leading-tight">
                 TORNEO CALL OF DUTY MOBILE
                 </h1>
-                <p className="mb-12 text-base font-medium !leading-relaxed text-body-color dark:text-white dark:opacity-90 sm:text-lg md:text-xl">
+                <p className="mb-3 text-base font-medium !leading-relaxed text-body-color dark:text-white dark:opacity-90 sm:text-lg md:text-xl">
                   ¡Bienvenido a FreshWar, donde la diversión y la competencia se unen en C.O.D Mobile!
                   <br />
                   Sumérgete en emoción, estrategia y buen rollo compitiendo con otros jugadores.
@@ -25,6 +25,16 @@ const Hero = () => {
                   Muestra tus habilidades y forja nuevas amistades en esta experiencia única.
                   <br />
                   ¡Únete a FreshWar y regístrate para un torneo inolvidable y lleno de diversión!
+                  <br />
+                </p>
+                <p className="mb-12 text-base font-medium">
+                El torneo sera el 30 de Octubre
+                  <br />
+                  - 7:00 PM (Colombia, México, Perú, Ecuador)
+                  <br />
+                  - 8:00 PM (Venezuela, Chile)
+                  <br />
+                  - 9:00 PM (Argentina)
                   <br />
                 </p>
                 <div className="flex flex-col items-center justify-center space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
