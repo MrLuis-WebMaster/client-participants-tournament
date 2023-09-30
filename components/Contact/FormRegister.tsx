@@ -377,6 +377,12 @@ const FormRegister = () => {
             <div className="text-red">{formik.errors.acceptTerms}</div>
           ) : null}
         </div>
+        <div className="mb-4">
+          <p className="text-red text-2xl font-bold">¡Importante!</p>
+          <p>
+            Después de enviar tu registro, revisa tu bandeja de entrada <span className="text-yellow-500">urgentemente</span>, incluido el spam o correo no deseado, ya que a veces nuestros mensajes pueden colarse allí.
+          </p>
+        </div>
         <button className="duration-80 mb-4 w-full cursor-pointer rounded-md border border-transparent bg-primary py-3 px-6 text-center text-base font-medium text-white outline-none transition ease-in-out hover:bg-opacity-80 hover:shadow-signUp focus-visible:shadow-none" type='submit' disabled={loading} >Enviar</button>
       </form>
       <BG />
