@@ -1,4 +1,3 @@
-import FormRegister from "./FormRegister";
 import FormContact from "./FormContact";
 
 const Contact = () => {
