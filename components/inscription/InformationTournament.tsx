@@ -136,7 +136,7 @@ const InformationTournament = ({ tournament }: any) => {
                             </div>
                         </dl>
                     </div>
-                    <p className="mt-1 max-w-2xl text-sm leading-6 text-gray-500">{tournament.description}</p>
+                    <p className="mt-1 max-w-2xl text-sm leading-6 text-gray-500" dangerouslySetInnerHTML={{ __html: tournament.description }} />
                 </div>
             </div>
         </>
