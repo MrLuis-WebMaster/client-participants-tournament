@@ -9,18 +9,18 @@ const menuData: Menu[] = [
   },
   {
     id: 2,
-    title: "Torneo",
-    path: "/torneo",
-    newTab: false,
-  },
-  {
-    id: 4,
-    title: "Inscripción",
-    path: "/inscripcion",
+    title: "Nosotros",
+    path: "/nosotros",
     newTab: false,
   },
   {
     id: 3,
+    title: "Torneos",
+    path: "/torneos",
+    newTab: false,
+  },
+  {
+    id: 4,
     title: "Contáctanos",
     path: "/contacto",
     newTab: false,

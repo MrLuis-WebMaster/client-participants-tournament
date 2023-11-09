@@ -1,53 +1,58 @@
 import Link from "next/link";
+import SliderTournaments from "./SliderTournaments";
 
-const Hero = () => {
+async function getData() {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT_API}/tournaments`, {
+    method: 'GET',
+    cache: 'no-store',
+    headers: {
+      'Authorization': `Bearer ${process.env.NEXT_PUBLIC_API_KEY}`
+    },
+  });
+  if (!response.ok) {
+    throw new Error(response.statusText)
+  }
+ 
+  return response.json()
+}
+const Hero = async () => {
+  const { tournaments } = await getData();
+
   return (
     <>
       <section
         id="home"
-        className="relative z-10 overflow-hidden pt-[120px] pb-16 md:pt-[150px] md:pb-[120px] xl:pt-[180px] xl:pb-[160px] 2xl:pt-[210px] 2xl:pb-[200px]"
+        className="relative z-10 overflow-hidden pt-[120px] pb-16 md:pt-[130px] md:pb-[120px] xl:pt-[160px] xl:pb-[160px] 2xl:pt-[210px] 2xl:pb-[200px]"
       >
         <div className="container">
-          <div className="-mx-4 flex flex-wrap">
-            <div className="w-full px-4">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               <div
-                className="wow fadeInUp mx-auto max-w-[860px] text-center"
+                className="wow fadeInUp mx-auto"
                 data-wow-delay=".2s"
               >
                 <h1 className="mb-5 text-3xl font-bold leading-tight text-black dark:text-white sm:text-4xl sm:leading-tight md:text-5xl md:leading-tight">
-                TORNEO CALL OF DUTY MOBILE
+                Juega, Divierte y Gana Recompensas!
                 </h1>
-                <p className="mb-3 text-base font-medium !leading-relaxed text-body-color dark:text-white dark:opacity-90 sm:text-lg md:text-xl">
-                  ¡Bienvenido a FreshWar, donde la diversión y la competencia se unen en C.O.D Mobile!
-                  <br />
+                <p className="mb-5 text-base font-medium !leading-relaxed text-body-color dark:text-white dark:opacity-90 sm:text-lg md:text-xl">
+                  ¡Bienvenido a FreshWar, donde la diversión y la competencia se unen!
                   Sumérgete en emoción, estrategia y buen rollo compitiendo con otros jugadores.
-                  <br />
                   Muestra tus habilidades y forja nuevas amistades en esta experiencia única.
-                  <br />
                   ¡Únete a FreshWar y regístrate para un torneo inolvidable y lleno de diversión!
-                  <br />
                 </p>
-                <p className="mb-12 text-base font-medium">
-                El torneo sera el 30 de Octubre
-                  <br />
-                  - 7:00 PM (Colombia, México, Perú, Ecuador)
-                  <br />
-                  - 8:00 PM (Venezuela, Chile)
-                  <br />
-                  - 9:00 PM (Argentina)
-                  <br />
-                </p>
-                <div className="flex flex-col items-center justify-center space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
+
+                <div className="flex flex-col items-center space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
                   <Link
                     href="/inscripcion"
                     className="rounded-md bg-primary py-4 px-8 text-base font-semibold text-white duration-300 ease-in-out hover:bg-primary/80"
                   >
-                   Inscribirse
+                    Torneos
                   </Link>
                 </div>
               </div>
+              <div>
+                  <SliderTournaments tournaments={tournaments}/>
+              </div>
             </div>
-          </div>
         </div>
         <div className="absolute top-0 right-0 z-[-1] opacity-30 lg:opacity-100">
           <svg

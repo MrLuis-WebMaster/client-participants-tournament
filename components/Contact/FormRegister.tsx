@@ -156,7 +156,7 @@ const validationSchema = Yup.object().shape({
   userName: Yup.string().required('Por favor, introduce tu nombre de usuario.'),
   userId: Yup.string().required('Por favor, introduce tu ID.'),
   age: Yup.number()
-    .integer('La edad debe ser un número entero.') 
+    .integer('La edad debe ser un número entero.')
     .min(17, 'Debes tener al menos 17 años para registrarte.')
     .moreThan(16, 'Debes tener al menos 17 años para registrarte.')
     .required('Por favor, introduce tu edad.'),
@@ -165,7 +165,13 @@ const validationSchema = Yup.object().shape({
 });
 
 
-const FormRegister = () => {
+const FormRegister = ({ tournament, showForm }: {
+  tournament: {
+    name: string,
+    id: string,
+    game: string
+  }, showForm: string
+}) => {
   const [loading, setLoading] = useState(false)
   async function postData(url = '', data = {}) {
     try {
@@ -211,7 +217,10 @@ const FormRegister = () => {
     },
     validationSchema,
     onSubmit: (values) => {
-      postData(`${process.env.NEXT_PUBLIC_ENDPOINT_API}/participants`, values)
+      postData(`${process.env.NEXT_PUBLIC_ENDPOINT_API}/tournament-participant`, {
+        tournamentId: Number(tournament.id),
+        participantData: values
+      })
     },
   });
 
@@ -221,170 +230,184 @@ const FormRegister = () => {
       data-wow-delay=".2s"
     >
       <h3 className="mb-4 text-2xl font-bold leading-tight text-black dark:text-white">
-        Formulario de Inscripción
+        Formulario de Inscripción para {tournament.name.replaceAll('%20', ' ')} ({tournament.game.replaceAll('%20', ' ')})
       </h3>
-      <p className="mb-6 border-b border-body-color border-opacity-25 pb-4 text-base font-medium leading-relaxed text-body-color dark:border-white dark:border-opacity-25">
-        Llena los campos
-      </p>
-      <form onSubmit={formik.handleSubmit}>
-        <div className='mb-4 '>
-          <label
-            htmlFor="name"
-            className="mb-3 block text-sm font-medium text-dark dark:text-white"
-          >
-            Nombre completo
-          </label>
-          <input
-            type="text"
-            name="fullName"
-            className="w-full rounded-md border border-body-color border-opacity-10 py-3 px-6 text-base font-medium text-body-color placeholder-body-color outline-none focus:border-primary focus:border-opacity-100 focus-visible:shadow-none dark:border-white dark:border-opacity-10 dark:bg-[#242B51] focus:dark:border-opacity-50"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.fullName}
-          />
-          {formik.touched.fullName && formik.errors.fullName ? (
-            <div className="text-red">{formik.errors.fullName}</div>
-          ) : null}
-        </div>
-        <div className='mb-4 '>
-          <label
-            htmlFor="email"
-            className="mb-3 block text-sm font-medium text-dark dark:text-white"
-          >
-            Correo
-          </label>
-          <input
-            type="email"
-            name="email"
-            className="w-full rounded-md border border-body-color border-opacity-10 py-3 px-6 text-base font-medium text-body-color placeholder-body-color outline-none focus:border-primary focus:border-opacity-100 focus-visible:shadow-none dark:border-white dark:border-opacity-10 dark:bg-[#242B51] focus:dark:border-opacity-50"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.email}
-          />
-          {formik.touched.email && formik.errors.email ? (
-            <div className="text-red">{formik.errors.email}</div>
-          ) : null}
-        </div>
-        <div className='mb-4 '>
-          <label
-            htmlFor="phone"
-            className="mb-3 block text-sm font-medium text-dark dark:text-white"
-          >
-            Número de celular
-          </label>
-          <input
-            type="tel"
-            name="phone"
-            className="w-full rounded-md border border-body-color border-opacity-10 py-3 px-6 text-base font-medium text-body-color placeholder-body-color outline-none focus:border-primary focus:border-opacity-100 focus-visible:shadow-none dark:border-white dark:border-opacity-10 dark:bg-[#242B51] focus:dark:border-opacity-50"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.phone}
-          />
-          {formik.touched.phone && formik.errors.phone ? (
-            <div className="text-red">{formik.errors.phone}</div>
-          ) : null}
-        </div>
-        <div className='mb-4 '>
-          <label
-            htmlFor="userName"
-            className="mb-3 block text-sm font-medium text-dark dark:text-white"
-          >
-            Nombre de usuario en COD Mobile
-          </label>
-          <input
-            type="text"
-            name="userName"
-            className="w-full rounded-md border border-body-color border-opacity-10 py-3 px-6 text-base font-medium text-body-color placeholder-body-color outline-none focus:border-primary focus:border-opacity-100 focus-visible:shadow-none dark:border-white dark:border-opacity-10 dark:bg-[#242B51] focus:dark:border-opacity-50"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.userName}
-          />
-          {formik.touched.userName && formik.errors.userName ? (
-            <div className="text-red">{formik.errors.userName}</div>
-          ) : null}
-        </div>
-        <div className='mb-4 '>
-          <label
-            htmlFor="userId"
-            className="mb-3 block text-sm font-medium text-dark dark:text-white"
-          >
-            Id de usuario en COD Mobile
-          </label>
-          <input
-            type="text"
-            name="userId"
-            className="w-full rounded-md border border-body-color border-opacity-10 py-3 px-6 text-base font-medium text-body-color placeholder-body-color outline-none focus:border-primary focus:border-opacity-100 focus-visible:shadow-none dark:border-white dark:border-opacity-10 dark:bg-[#242B51] focus:dark:border-opacity-50"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.userId}
-          />
-          {formik.touched.userId && formik.errors.userId ? (
-            <div className="text-red">{formik.errors.userId}</div>
-          ) : null}
-        </div>
-        <div className='mb-4 '>
-          <label
-            htmlFor="age"
-            className="mb-3 block text-sm font-medium text-dark dark:text-white"
-          >
-            Edad
-          </label>
-          <input
-            type="number"
-            name="age"
-            min={17}
-            className="w-full rounded-md border border-body-color border-opacity-10 py-3 px-6 text-base font-medium text-body-color placeholder-body-color outline-none focus:border-primary focus:border-opacity-100 focus-visible:shadow-none dark:border-white dark:border-opacity-10 dark:bg-[#242B51] focus:dark:border-opacity-50"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.age}
-          />
-          {formik.touched.age && formik.errors.age ? (
-            <div className="text-red">{formik.errors.age}</div>
-          ) : null}
-        </div>
-        <div className='mb-4 '>
-          <label
-            htmlFor="platform"
-            className="mb-3 block text-sm font-medium text-dark dark:text-white"
-          >
-            Plataforma donde juegas (android/ios/otro)
-          </label>
-          <input
-            type="text"
-            name="platform"
-            className="w-full rounded-md border border-body-color border-opacity-10 py-3 px-6 text-base font-medium text-body-color placeholder-body-color outline-none focus:border-primary focus:border-opacity-100 focus-visible:shadow-none dark:border-white dark:border-opacity-10 dark:bg-[#242B51] focus:dark:border-opacity-50"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.platform}
-          />
-          {formik.touched.platform && formik.errors.platform ? (
-            <div className="text-red">{formik.errors.platform}</div>
-          ) : null}
-        </div>
-        <div className='mb-4'>
-          <label className="flex items-center gap-2">
-            <input
-              type="checkbox"
-              name="acceptTerms"
-              checked={formik.values.acceptTerms}
-              onChange={formik.handleChange}
-              className="mr-2"
-            />
-            Aceptar
-            <a className='border-b' href="terminos-y-condiciones" target="_blank" rel="noopener noreferrer"> términos y condiciones</a>
-          </label>
-          {formik.touched.acceptTerms && formik.errors.acceptTerms ? (
-            <div className="text-red">{formik.errors.acceptTerms}</div>
-          ) : null}
-        </div>
-        <div className="mb-4">
-          <p className="text-red text-2xl font-bold">¡Importante!</p>
-          <p>
-            Después de enviar tu registro, revisa tu bandeja de entrada <span className="text-yellow-500">urgentemente</span>, incluido el spam o correo no deseado, ya que a veces nuestros mensajes pueden colarse allí.
+      {(showForm !== 'Finished' && showForm !== 'Closed') && (
+        <>
+          <p className="mb-6 border-b border-body-color border-opacity-25 pb-4 text-base font-medium leading-relaxed text-body-color dark:border-white dark:border-opacity-25">
+            Llena los campos
           </p>
-        </div>
-        <button className="duration-80 mb-4 w-full cursor-pointer rounded-md border border-transparent bg-primary py-3 px-6 text-center text-base font-medium text-white outline-none transition ease-in-out hover:bg-opacity-80 hover:shadow-signUp focus-visible:shadow-none" type='submit' disabled={loading} >Enviar</button>
-      </form>
+          <form onSubmit={formik.handleSubmit}>
+            <div className='mb-4 '>
+              <label
+                htmlFor="name"
+                className="mb-3 block text-sm font-medium text-dark dark:text-white"
+              >
+                Nombre completo
+              </label>
+              <input
+                type="text"
+                name="fullName"
+                className="w-full rounded-md border border-body-color border-opacity-10 py-3 px-6 text-base font-medium text-body-color placeholder-body-color outline-none focus:border-primary focus:border-opacity-100 focus-visible:shadow-none dark:border-white dark:border-opacity-10 dark:bg-[#242B51] focus:dark:border-opacity-50"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.fullName}
+              />
+              {formik.touched.fullName && formik.errors.fullName ? (
+                <div className="text-red">{formik.errors.fullName}</div>
+              ) : null}
+            </div>
+            <div className='mb-4 '>
+              <label
+                htmlFor="email"
+                className="mb-3 block text-sm font-medium text-dark dark:text-white"
+              >
+                Correo
+              </label>
+              <input
+                type="email"
+                name="email"
+                className="w-full rounded-md border border-body-color border-opacity-10 py-3 px-6 text-base font-medium text-body-color placeholder-body-color outline-none focus:border-primary focus:border-opacity-100 focus-visible:shadow-none dark:border-white dark:border-opacity-10 dark:bg-[#242B51] focus:dark:border-opacity-50"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.email}
+              />
+              {formik.touched.email && formik.errors.email ? (
+                <div className="text-red">{formik.errors.email}</div>
+              ) : null}
+            </div>
+            <div className='mb-4 '>
+              <label
+                htmlFor="phone"
+                className="mb-3 block text-sm font-medium text-dark dark:text-white"
+              >
+                Número de celular
+              </label>
+              <input
+                type="tel"
+                name="phone"
+                className="w-full rounded-md border border-body-color border-opacity-10 py-3 px-6 text-base font-medium text-body-color placeholder-body-color outline-none focus:border-primary focus:border-opacity-100 focus-visible:shadow-none dark:border-white dark:border-opacity-10 dark:bg-[#242B51] focus:dark:border-opacity-50"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.phone}
+              />
+              {formik.touched.phone && formik.errors.phone ? (
+                <div className="text-red">{formik.errors.phone}</div>
+              ) : null}
+            </div>
+            <div className='mb-4 '>
+              <label
+                htmlFor="userName"
+                className="mb-3 block text-sm font-medium text-dark dark:text-white"
+              >
+                Nombre de usuario en {tournament.game.replaceAll('%20', ' ')}
+              </label>
+              <input
+                type="text"
+                name="userName"
+                className="w-full rounded-md border border-body-color border-opacity-10 py-3 px-6 text-base font-medium text-body-color placeholder-body-color outline-none focus:border-primary focus:border-opacity-100 focus-visible:shadow-none dark:border-white dark:border-opacity-10 dark:bg-[#242B51] focus:dark:border-opacity-50"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.userName}
+              />
+              {formik.touched.userName && formik.errors.userName ? (
+                <div className="text-red">{formik.errors.userName}</div>
+              ) : null}
+            </div>
+            <div className='mb-4 '>
+              <label
+                htmlFor="userId"
+                className="mb-3 block text-sm font-medium text-dark dark:text-white"
+              >
+                Id de usuario en {tournament.game.replaceAll('%20', ' ')}
+              </label>
+              <input
+                type="text"
+                name="userId"
+                className="w-full rounded-md border border-body-color border-opacity-10 py-3 px-6 text-base font-medium text-body-color placeholder-body-color outline-none focus:border-primary focus:border-opacity-100 focus-visible:shadow-none dark:border-white dark:border-opacity-10 dark:bg-[#242B51] focus:dark:border-opacity-50"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.userId}
+              />
+              {formik.touched.userId && formik.errors.userId ? (
+                <div className="text-red">{formik.errors.userId}</div>
+              ) : null}
+            </div>
+            <div className='mb-4 '>
+              <label
+                htmlFor="age"
+                className="mb-3 block text-sm font-medium text-dark dark:text-white"
+              >
+                Edad
+              </label>
+              <input
+                type="number"
+                name="age"
+                min={17}
+                className="w-full rounded-md border border-body-color border-opacity-10 py-3 px-6 text-base font-medium text-body-color placeholder-body-color outline-none focus:border-primary focus:border-opacity-100 focus-visible:shadow-none dark:border-white dark:border-opacity-10 dark:bg-[#242B51] focus:dark:border-opacity-50"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.age}
+              />
+              {formik.touched.age && formik.errors.age ? (
+                <div className="text-red">{formik.errors.age}</div>
+              ) : null}
+            </div>
+            <div className='mb-4 '>
+              <label
+                htmlFor="platform"
+                className="mb-3 block text-sm font-medium text-dark dark:text-white"
+              >
+                Plataforma donde juegas (android/ios/otro)
+              </label>
+              <input
+                type="text"
+                name="platform"
+                className="w-full rounded-md border border-body-color border-opacity-10 py-3 px-6 text-base font-medium text-body-color placeholder-body-color outline-none focus:border-primary focus:border-opacity-100 focus-visible:shadow-none dark:border-white dark:border-opacity-10 dark:bg-[#242B51] focus:dark:border-opacity-50"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.platform}
+              />
+              {formik.touched.platform && formik.errors.platform ? (
+                <div className="text-red">{formik.errors.platform}</div>
+              ) : null}
+            </div>
+            <div className='mb-4'>
+              <label className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  name="acceptTerms"
+                  checked={formik.values.acceptTerms}
+                  onChange={formik.handleChange}
+                  className="mr-2"
+                />
+                Aceptar
+                <a className='border-b' href="terminos-y-condiciones" target="_blank" rel="noopener noreferrer"> términos y condiciones</a>
+              </label>
+              {formik.touched.acceptTerms && formik.errors.acceptTerms ? (
+                <div className="text-red">{formik.errors.acceptTerms}</div>
+              ) : null}
+            </div>
+            <div className="mb-4">
+              <p className="text-red text-2xl font-bold">¡Importante!</p>
+              <p>
+                Después de enviar tu registro, revisa tu bandeja de entrada <span className="text-yellow-500">urgentemente</span>, incluido el spam o correo no deseado, ya que a veces nuestros mensajes pueden colarse allí.
+              </p>
+            </div>
+            <button className="duration-80 mb-4 w-full cursor-pointer rounded-md border border-transparent bg-primary py-3 px-6 text-center text-base font-medium text-white outline-none transition ease-in-out hover:bg-opacity-80 hover:shadow-signUp focus-visible:shadow-none" type='submit' disabled={loading} >Enviar</button>
+          </form>
+        </>
+      )}
+      {showForm === 'Close' && (
+        <p className="my-6 border-b border-body-color border-opacity-25 pb-4 text-base font-medium leading-relaxed text-body-color dark:border-white dark:border-opacity-25">
+          Las inscripciones aun estan cerradas.
+        </p>
+      )}
+      {showForm === 'Finished' && (
+        <p className="my-6 border-b border-body-color border-opacity-25 pb-4 text-base font-medium leading-relaxed text-body-color dark:border-white dark:border-opacity-25">
+          Este torneo ha finalizado.
+        </p>
+      )}
       <BG />
 
     </div>
