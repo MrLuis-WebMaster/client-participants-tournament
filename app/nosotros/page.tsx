@@ -2,16 +2,17 @@ import SectionOne from "@/components/Common/SectionOne";
 import SectionTwo from "@/components/Common/SectionTwo";
 import Breadcrumb from "@/components/Common/Breadcrumb";
 import type { Metadata } from 'next'
+
 export const metadata: Metadata = {
-  title: 'FreshWar Torneo | Torneo',
+  title: 'FreshWar Torneo | Nosotros',
   description: 'FreshWar Torneo',
 }
 const TorneoPage = () => {
   return (
     <>
       <Breadcrumb
-        pageName="Torneo"
-        description="Preparate para divertirte en el torneo"
+        pageName="Nosotros"
+        description="Nuestra Historia y Equipo"
       />
 
       <SectionOne
@@ -19,18 +20,6 @@ const TorneoPage = () => {
         list={[]}
         title="¿Que es FreshWar?"
         paragraph="FreshWar es un torneo enraizado en la pasión por los videojuegos y el mundo de la programación, donde amigos, familiares y sus círculos cercanos pueden participar en una competencia sana y emocionante. Nuestra misión es crear un espacio donde cada jugador pueda disfrutar al máximo, siendo parte de una comunidad fresca y vibrante." />
-
-      <SectionTwo
-        image="/images/register.svg"
-        title="Inscripciones"
-        paragraph={`¡Prepárate para unirte a la batalla en FreshWar! Tu entrada al mundo de la competencia está a solo un paso. Regístrate ahora para participar en este emocionante torneo de Call of Duty Mobile. Completa nuestro sencillo formulario de inscripción en línea, proporciona los detalles necesarios y prepárate para demostrar tu destreza en la arena. La inscripción tiene un costo de 8.000 pesos colombianos o 2 dólares estadounidenses. ¿Estás listo para la acción? Regístrate <a href="/inscripcion" target='_black' class="border-b">aquí</a> y asegura tu lugar en FreshWar. 🎮✨`}
-      />
-      <SectionOne
-        image="/images/rules.svg"
-        list={[]}
-        title="Reglas y Normativas"
-        paragraph={`Para garantizar una competencia justa y emocionante, en FreshWar seguimos estrictas normativas y reglas. ¡Es fundamental que todos los participantes las conozcan y respeten! Antes de unirte, asegúrate de revisar detenidamente nuestras reglas en el siguiente <a href="/files/normas.pdf" target='_black' class="border-b">enlace</a> y estar completamente informado para disfrutar al máximo cada momento en FreshWar. 📖👀`} />
-
 
       <SectionTwo
         image="/images/ceo.svg"

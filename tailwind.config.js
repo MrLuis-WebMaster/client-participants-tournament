@@ -20,6 +20,7 @@ module.exports = {
       primary: "#F47121",
       red: "#FF0000",
       yellow: "#FBB040",
+      green: "rgb(22, 163, 74)",
       "body-color": "#959CB1",
     },
     screens: {

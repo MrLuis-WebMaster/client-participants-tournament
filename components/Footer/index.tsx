@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Logo from "../Common/Logo";
 
+
 const Footer = () => {
   return (
     <>
@@ -20,6 +21,33 @@ const Footer = () => {
                   ¡Siente el flow, vive la batalla, y mantente always fresh!
                 </p>
                 <div className="flex items-center">
+                  <a
+                    href="https://www.instagram.com/freshwar_/"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="social-link"
+                    className="mr-4 text-[#CED3F6] hover:text-primary text-xl"
+                  >
+                    <i className='bx bxl-instagram'></i>
+                  </a>
+                  <a
+                    href="https://www.facebook.com/profile.php?id=61551865721972"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="social-link"
+                    className="mr-4 text-[#CED3F6] hover:text-primary text-xl"
+                  >
+                    <i className='bx bxl-facebook'></i>
+                  </a>
+                  <a
+                    href="https://discord.gg/drkAm8Ea"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="social-link"
+                    className="mr-4 text-[#CED3F6] hover:text-primary text-xl"
+                  >
+                    <i className='bx bxl-discord'></i>
+                  </a>
                   <a
                     href="https://wa.link/3z8vat"
                     target="_blank"
@@ -59,18 +87,18 @@ const Footer = () => {
                 <ul>
                   <li>
                     <a
-                      href="/torneo"
+                      href="/torneos"
                       className="mb-4 inline-block text-base font-medium text-body-color hover:text-primary"
                     >
-                      Torneo
+                      Torneos
                     </a>
                   </li>
                   <li>
                     <a
-                      href="/inscripcion"
+                      href="/nosotros"
                       className="mb-4 inline-block text-base font-medium text-body-color hover:text-primary"
                     >
-                      Inscripción
+                      Nosotros
                     </a>
                   </li>
                 </ul>
