@@ -167,10 +167,10 @@ const validationSchema = Yup.object().shape({
 
 const FormRegister = ({ tournament, showForm }: {
   tournament: {
-    name: string,
-    id: string,
-    game: string
-  }, showForm: string
+    name?: string,
+    id?: string,
+    game?: string
+  }, showForm?: string
 }) => {
   const [loading, setLoading] = useState(false)
   async function postData(url = '', data = {}) {
