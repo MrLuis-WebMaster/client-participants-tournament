@@ -2,7 +2,6 @@ import SectionOne from "@/components/Common/SectionOne";
 import SectionTwo from "@/components/Common/SectionTwo";
 import Slogan from "@/components/slogan";
 import ScrollUp from "@/components/Common/ScrollUp";
-import Contact from "@/components/Contact";
 import Features from "@/components/Features";
 import Hero from "@/components/Hero";
 import Card from "@/components/cards";
@@ -19,9 +18,6 @@ export default function Home() {
     <>
       <ScrollUp />
       <Hero />
-      <p>
-
-      </p>
       <Features />
       <SectionOne
         image="/images/rules.svg"
@@ -33,9 +29,8 @@ export default function Home() {
       <SectionTwo
         image="/images/register.svg"
         title="Inscripciones"
-        paragraph="La inscripción en FreshWar es tu pasaporte a la emoción y la competencia. Regístrate ahora para participar en este torneo épico de Call of Duty Mobile. Completa nuestro formulario de inscripción en línea, proporciona los detalles requeridos y prepárate para mostrar tus habilidades en la arena de juego. La inscripción tiene un costo de 8.000 pesos colombianos o 2 dólares estadounidenses."
+        paragraph="La inscripción en FreshWar te brinda acceso a emocionantes torneos, cada uno con su propio precio de inscripción. Regístrate ahora para participar en estos apasionantes desafíos. Completa nuestro formulario de inscripción en línea, proporciona los detalles requeridos y prepárate para demostrar tus habilidades en las diferentes competencias. Los precios de inscripción varían según el torneo, así que elige los que más te gusten. ¡Únete a la diversión y compite en tus juegos favoritos!"
       />
-      <Contact />
     </>
   );
 }

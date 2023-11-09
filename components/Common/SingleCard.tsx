@@ -14,17 +14,15 @@ const SingleCard = () => {
             <Image src={'/images/throphy.svg'} alt={'Icon'} fill />
           </div>
           <div className="w-full">
-            <h2 className="text-xl font-bold text-black dark:text-white sm:text-2xl lg:text-xl xl:text-2xl text-center mb-3">¡Triunfo y Recompensa!</h2>
+            <h2 className="text-xl font-bold text-black dark:text-white sm:text-2xl lg:text-xl xl:text-2xl text-center mb-3">¡Celebra tus Triunfos en FreshWar!</h2>
           </div>
         </div>
         <p className="text-base leading-relaxed text-body-color">
-          El premio para el primer lugar en FreshWar es más que una victoria, es una celebración del esfuerzo y habilidades demostradas en la arena de Call of Duty Mobile.
+          En FreshWar, premiamos el esfuerzo y las habilidades que demuestras en la emocionante arena de los torneos. ¡Te espera una recompensa especial para celebrar tus victorias!
           <br />
-          El campeón se llevará a casa un premio en efectivo de 400,000 pesos colombianos o su equivalente en 100 dólares estadounidenses.
+          Cada evento en FreshWar ofrece premios que varían según la competencia. Los ganadores tienen la oportunidad de llevarse a casa premios en efectivo, objetos valiosos y mucho más. Además, como un reconocimiento a tu excelencia, recibirás una entrada gratuita para futuras ediciones de nuestros torneos. Esto garantiza tu participación en emocionantes batallas por venir, llenas de competencia y diversión.
           <br />
-          Además, como reconocimiento a su excelencia, el ganador recibirá una entrada gratuita para la próxima edición del torneo, asegurando su participación en futuras batallas llenas de emoción y competencia.
-          <br />
-          ¡Este premio es solo el comienzo de una emocionante trayectoria en FreshWar!
+          Estos premios son solo el comienzo de tu emocionante viaje en FreshWar. ¡Te esperan desafíos continuos y recompensas que celebrarán tus habilidades una y otra vez!
         </p>
       </div>
     </div>

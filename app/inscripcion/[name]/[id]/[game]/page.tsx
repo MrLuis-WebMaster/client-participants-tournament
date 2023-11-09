@@ -1,11 +1,30 @@
 import Breadcrumb from '@/components/Common/Breadcrumb';
 import FormRegister from '@/components/Contact/FormRegister';
+import InformationTournament from '@/components/inscription/InformationTournament';
+
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'FreshWar Torneo | Inscripción',
   description: 'FreshWar Torneo',
 }
+
+async function getData(id:number) {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT_API}/tournaments/${id}`, {
+    method: 'GET',
+    cache: 'no-store',
+    next: { revalidate: 30 },
+    headers: {
+      'Authorization': `Bearer ${process.env.NEXT_PUBLIC_API_KEY}`
+    },
+  });
+  if (!response.ok) {
+    throw new Error(response.statusText)
+  }
+ 
+  return response.json()
+}
+
 
 const Bg = () => {
   return (
@@ -69,24 +88,28 @@ const Bg = () => {
   )
 }
 
-const InscripcionPage = () => {
+const InscripcionPage = async ({ params }: { params: { name: string, id: string, game: string } }) => {
+  const tournament = await getData(Number(params.id));
+  console.log(tournament)
   return (
     <>
       <Breadcrumb
         pageName="Inscripción"
-        description="Es importante despues de el registro hacer el pago de la entrada se te enviara un correo con todos los detalles."
+        description="Es importante despues de el registro se te enviara un correo con todos los detalles."
       />
       <section className="relative z-10 overflow-hidden">
         <div className="container">
-          <div className="-mx-4 flex flex-wrap">
-            <div className="w-full px-4">
-              <div className="mx-auto max-w-[1200px]  py-10 px-6 sm:p-[30px]">
-                <FormRegister />
-              </div>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 py-5">
+            <InformationTournament
+              tournament={tournament}
+            />
+            <FormRegister
+              tournament={params}
+              showForm={tournament.status}
+            />
           </div>
         </div>
-        <Bg/>
+        <Bg />
       </section>
     </>
   );
