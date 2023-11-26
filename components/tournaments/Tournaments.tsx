@@ -23,9 +23,6 @@ const TorneoPageComponent = () => {
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT_API}/tournaments?page=${page}&pageSize=${itemsPerPage}&searchTerm=${search.trim()}`, {
         method: 'GET',
-        headers: {
-          'Authorization': `Bearer ${process.env.NEXT_PUBLIC_API_KEY}`
-        },
       });
 
       if (!response.ok) {

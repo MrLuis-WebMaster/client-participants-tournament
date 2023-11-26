@@ -42,7 +42,7 @@ const Hero = async () => {
 
                 <div className="flex flex-col items-center space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
                   <Link
-                    href="/inscripcion"
+                    href="/torneos"
                     className="rounded-md bg-primary py-4 px-8 text-base font-semibold text-white duration-300 ease-in-out hover:bg-primary/80"
                   >
                     Torneos

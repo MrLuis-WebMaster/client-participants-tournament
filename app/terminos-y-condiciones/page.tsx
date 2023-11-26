@@ -9,8 +9,8 @@ const PageTermsAndConditions = () => {
     return (
         <>
             <Breadcrumb
-                pageName="Términos y Condiciones - Torneo Call of Duty Mobile FreshWar"
-                description="Al participar en el torneo FreshWar de Call of Duty Mobile, aceptas los siguientes términos y condiciones:"
+                pageName="Términos y Condiciones"
+                description="Al participar en algun torneo, aceptas los siguientes términos y condiciones:"
             />
             <div className="container mx-auto pb-24 ">
                 <div className="bg-white dark:bg-dark p-6 rounded-lg shadow-lg">
@@ -26,7 +26,7 @@ const PageTermsAndConditions = () => {
                             <strong>Inscripción y Cuota:</strong>
                             <ul className="list-disc pl-6">
                                 <li>
-                                    Para inscribirte en el torneo, es obligatorio completar el formulario de inscripción en línea y pagar la cuota de inscripción de 8.000 pesos colombianos o 2 dólares estadounidenses.
+                                    Para inscribirte en el torneo, es obligatorio completar el formulario de inscripción en línea y pagar la cuota de inscripción (solo para torneos de pago).
                                 </li>
                                 <li>La cuota de inscripción es no reembolsable.</li>
                             </ul>
@@ -48,10 +48,10 @@ const PageTermsAndConditions = () => {
                             </ul>
                         </li>
                         <li className="mb-4">
-                            <strong>Premio:</strong>
+                            <strong>Premios:</strong>
                             <ul className="list-disc pl-6">
                                 <li>
-                                    El primer lugar recibirá un premio en efectivo de 400.000 pesos colombianos o 100 dólares estadounidenses y la entrada gratuita para la próxima edición del torneo.
+                                    Los premios estaran en cada descripcion del torneo, los cuales Freshwar y organizados de torneos se encuentran en la obligación de entregarlo, para recompensar a los participantes.
                                 </li>
                             </ul>
                         </li>
@@ -73,7 +73,7 @@ const PageTermsAndConditions = () => {
                             <strong>Contacto:</strong>
                             <ul className="list-disc pl-6">
                                 <li>
-                                    Para cualquier consulta, problema o soporte técnico, puedes contactar a Luis Martinez, el creador del torneo, a través del siguiente enlace: <a href="/contacto" className="text-blue-500">Contactar a Luis Martinez</a>.
+                                    Para cualquier consulta, problema o soporte técnico, puedes contactar a Luis Martinez, el creador del torneo, a través del siguiente enlace: <a href="/contacto" className="text-primary">Contactar a Luis Martinez</a>.
                                 </li>
                             </ul>
                         </li>

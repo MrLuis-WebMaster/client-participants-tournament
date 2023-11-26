@@ -13,10 +13,6 @@ async function getData(id:number) {
   const response = await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT_API}/tournaments/${id}`, {
     method: 'GET',
     cache: 'no-store',
-    next: { revalidate: 30 },
-    headers: {
-      'Authorization': `Bearer ${process.env.NEXT_PUBLIC_API_KEY}`
-    },
   });
   if (!response.ok) {
     throw new Error(response.statusText)
@@ -90,7 +86,7 @@ const Bg = () => {
 
 const InscripcionPage = async ({ params }: { params: { name: string, id: string, game: string } }) => {
   const tournament = await getData(Number(params.id));
-  console.log(tournament)
+
   return (
     <>
       <Breadcrumb
@@ -104,7 +100,7 @@ const InscripcionPage = async ({ params }: { params: { name: string, id: string,
               tournament={tournament}
             />
             <FormRegister
-              tournament={params}
+              tournament={tournament}
               showForm={tournament.status}
             />
           </div>
