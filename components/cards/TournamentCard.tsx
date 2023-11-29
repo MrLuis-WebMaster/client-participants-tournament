@@ -15,7 +15,7 @@ const TournamentCard = ({ tournament, showMoreInfo = false, className = "" }) =>
             </div>
             <div className="p-4 flex flex-col gap-3">
                 <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white truncate">{tournament.name} ({tournament.game})</h5>
-                <div className="text-xs text-gray-700 dark:text-gray-400">
+                <div className="text-xs text-white">
                     <p className='mb-1 capitalize'>
                         <span className='font-bold'>Fecha:</span> {fullFormattedDateTime(tournament.dateTime)}
                     </p>
