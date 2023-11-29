@@ -86,14 +86,13 @@ const DropdownUser = ({user, session }:Props) => {
                 ref={dropdown}
                 onFocus={() => setDropdownOpen(true)}
                 onBlur={() => setDropdownOpen(false)}
-                className={`absolute right-0 mt-4 flex w-62.5 flex-col rounded-sm border border-stroke bg-dark shadow-default ${dropdownOpen === true ? "block" : "hidden"
-                    }`}
+                className={`min-w-[10rem] absolute right-0 mt-4 flex flex-col rounded-md border bg-dark shadow-default ${dropdownOpen === true ? "block" : "hidden"}`}
             >
                 <ul className="flex flex-col gap-5 border-b p-3">
                     <li>
                         <Link
                             href="/account/profile"
-                            className="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
+                            className="flex items-center gap-2 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
                         >
                             <i className='bx bx-user'></i>
                             Mi Perfil
@@ -102,7 +101,7 @@ const DropdownUser = ({user, session }:Props) => {
                     <li>
                         <Link
                             href="/account/my-tournaments"
-                            className="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
+                            className="flex items-center gap-2 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
                         >
                             <i className='bx bx-dice-6'></i>
                             Mis Torneos
@@ -111,7 +110,7 @@ const DropdownUser = ({user, session }:Props) => {
                 </ul>
                 <button
                     onClick={() => signOut({ callbackUrl: '/' })} 
-                    className="flex items-center gap-3.5 p-3 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
+                    className="flex items-center gap-2 p-3 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
                 >
                     <i className='bx bx-log-out'></i>
                     Cerrar Sesión
