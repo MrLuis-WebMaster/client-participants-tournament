@@ -10,7 +10,7 @@ const CardProfile = () => {
         <>
             {
                 session && (
-                    <div className="bg-dark rounded-[1.75rem] shadow-shadow-500 shadow-3xl rounded-primary relative mx-auto flex h-full w-full max-w-[50%] flex-col bg-cover bg-clip-border p-[16px]">
+                    <div className="bg-dark rounded-[1.75rem] shadow-3xl rounded-primary relative p-[16px]">
                         <div className="relative flex h-32 w-full justify-center rounded-xl bg-cover" style={{ backgroundImage: 'url("https://i.ibb.co/FWggPq1/banner.png")' }}>
                             <div className="absolute -bottom-12 flex h-[88px] w-[88px] items-center justify-center rounded-full border-[4px] border-white bg-pink-400">
                                 <Image fill className="h-full w-full rounded-full" src={session.user.image} alt={session.user.name} />

@@ -8,7 +8,7 @@ interface Props {
 }
 
 const ProviderAuth = (props: Props) => {
-  return <SessionProvider refetchOnWindowFocus={true}><ContextAuthProvider>{props.children}</ContextAuthProvider></SessionProvider>;
+  return <SessionProvider><ContextAuthProvider>{props.children}</ContextAuthProvider></SessionProvider>;
 };
 
 export default ProviderAuth;

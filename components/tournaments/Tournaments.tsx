@@ -1,7 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
 import Breadcrumb from "@/components/Common/Breadcrumb";
-import type { Metadata } from 'next'
 import TournamentCard from "@/components/cards/TournamentCard";
 import Pagination from "@/components/Common/Pagination";
 import TournamentCardSkeleton from "@/components/cards/TournamentCardSkeleton";
@@ -60,7 +59,7 @@ const TorneoPageComponent = () => {
         description="Encuentra el mejor torneo que se adapte a ti"
       />
       <div className="container pb-5">
-        <div className="bg-gray-100 min-h-screen">
+        <div className="min-h-screen">
           <div className="mx-auto">
             <Filter 
               setSearchTerm={setSearchTerm}

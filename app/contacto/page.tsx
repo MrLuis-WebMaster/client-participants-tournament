@@ -4,8 +4,8 @@ import FormContact from "@/components/Contact/FormContact";
 
 import type { Metadata } from 'next'
 export const metadata: Metadata = {
-  title: 'FreshWar Torneo | Contacto',
-  description: 'FreshWar Torneo',
+  title: 'FreshWar | Contacto',
+  description: 'FreshWar',
 }
 const ContactPage = () => {
   return (

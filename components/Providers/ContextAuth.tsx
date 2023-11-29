@@ -1,15 +1,10 @@
 import React, { createContext, ReactNode } from 'react';
 import useAuth from '@/hooks/useAuth';
 import { Session } from 'next-auth';
+import User from '@/types/User';
 
 
-interface User {
-    id: number;
-    fullName: string;
-    email: string;
-    phone: string | null;
-    age: string | null;
-}
+
 
 interface AuthContextProps {
   session: Session;

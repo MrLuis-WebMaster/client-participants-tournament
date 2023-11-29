@@ -4,7 +4,6 @@ import { Analytics } from '@vercel/analytics/react';
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import ScrollToTop from "@/components/ScrollToTop";
-import ButtonFloat from "@/components/Common/ButtonFloat";
 import { Toaster } from 'react-hot-toast';
 import ProviderAuth from '@/components/Providers/ProviderAuth';
 import { Providers } from "./providers";
@@ -34,7 +33,6 @@ export default function RootLayout({
             {children}
             <Footer />
             <ScrollToTop />
-            <ButtonFloat />
             <Toaster />
           </ProviderAuth>
         </Providers>

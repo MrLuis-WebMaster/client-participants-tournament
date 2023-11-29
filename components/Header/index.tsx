@@ -4,12 +4,12 @@ import { useEffect, useState, useContext } from "react";
 import menuData from "./menuData";
 import Logo from "../Common/Logo";
 import { signIn, signOut } from "next-auth/react";
-import { Tooltip } from "react-tooltip";
 import { ContextAuth } from "../Providers/ContextAuth";
+import DropdownUser from "./DropdownUser";
 
 const Header = () => {
   const [navbarOpen, setNavbarOpen] = useState(false);
-  const { status, user } = useContext(ContextAuth)
+  const { status, user, session } = useContext(ContextAuth)
   const navbarToggleHandler = () => {
     setNavbarOpen(!navbarOpen);
   };
@@ -140,7 +140,7 @@ const Header = () => {
                       <>
                         <li className="group relative md:hidden">
                           <Link
-                            href="/profile"
+                            href="/account/profile"
                             className={`flex py-2 text-base text-dark group-hover:opacity-70 dark:text-white lg:mr-0 lg:inline-flex lg:py-6 lg:px-0`}
                           >
                             Perfil
@@ -148,10 +148,10 @@ const Header = () => {
                         </li>
                         <li className="group relative md:hidden">
                           <button
-                            onClick={() => signOut()}
+                            onClick={() => signOut({ callbackUrl: '/' })}
                             className={`flex py-2 text-base text-dark group-hover:opacity-70 dark:text-white lg:mr-0 lg:inline-flex lg:py-6 lg:px-0`}
                           >
-                            Cerrar Sesion
+                            Cerrar Sesión
                           </button>
                         </li>
                       </>
@@ -160,7 +160,7 @@ const Header = () => {
                 </nav>
               </div>
               <div className="flex items-center justify-end pr-16 lg:pr-0">
-                {(status === "loading" && !user) && (
+                {(!user?.fullName.length ) && (
                   <div role="status" className="hidden max-w-sm animate-pulse md:block">
                       <div className="rounded-md bg-body-color w-44 md:px-9 lg:px-6 xl:px-9 h-10"></div>
                       <span className="sr-only">Loading...</span>
@@ -175,23 +175,7 @@ const Header = () => {
                   </button>
                 )}
                 {(status === "authenticated" && user ) && (
-                  <div className="flex gap-3">
-                    <Link
-                      href="/profile"
-                      className="ease-in-up hidden gap-1 rounded-md bg-primary py-2 px-8 text-base font-bold text-white transition duration-300 hover:bg-opacity-90 hover:shadow-signUp md:flex md:gap-1 md:items-center md:px-9 lg:px-6 xl:px-9"
-                    >
-                      <i className='bx bxs-user'></i>
-                      Perfil
-                    </Link>
-                    <button
-                      onClick={() => signOut({ callbackUrl: '/' })}
-                      data-tooltip-id="my-tooltip" data-tooltip-content="Cerrar sesión"
-                      className="ease-in-up hidden rounded-md border b-primary py-2 px-8 text-base font-bold text-white transition duration-300 hover:bg-primary hover:shadow-signUp md:block md:px-9 lg:px-4"
-                    >
-                      <i className='bx bx-log-out'></i>
-                    </button>
-                    <Tooltip id="my-tooltip" />
-                  </div>
+                  <DropdownUser user={user} session={session}/>
                 )}
               </div>
             </div>

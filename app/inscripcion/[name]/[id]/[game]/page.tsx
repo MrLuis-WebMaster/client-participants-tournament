@@ -5,8 +5,8 @@ import InformationTournament from '@/components/inscription/InformationTournamen
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'FreshWar Torneo | Inscripción',
-  description: 'FreshWar Torneo',
+  title: 'FreshWar | Inscripción',
+  description: 'FreshWar',
 }
 
 async function getData(id:number) {
