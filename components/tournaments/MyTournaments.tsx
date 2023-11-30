@@ -4,6 +4,9 @@ import Pagination from "@/components/Common/Pagination";
 import useNavigation from "@/hooks/useNavigation";
 import { ContextAuth } from "../Providers/ContextAuth";
 import CardRegisterTournament from "@/app/account/components/CardRegisterTournament";
+import User from "@/types/User";
+import toast from "react-hot-toast";
+
 
 const MyTournamentPageComponent = () => {
     const { navigateWithQueryParam, searchParams } = useNavigation();
@@ -11,6 +14,7 @@ const MyTournamentPageComponent = () => {
     const [registers, setRegisters] = useState([]);
     const [totalRegisters, setTotalRegisters] = useState(0);
     const [loading, setLoading] = useState(true);
+    const [loadingEmail, setLoadingEmail] = useState(false);
     const { user, token } = useContext(ContextAuth);
 
     const itemsPerPage = 6;
@@ -65,9 +69,46 @@ const MyTournamentPageComponent = () => {
         navigateWithQueryParam('page', (currentPage).toString())
     };
 
+    const sendNotificationEmail = async (user: User) => {
+        try {
+            setLoadingEmail(true);
+            const url = `${process.env.NEXT_PUBLIC_ENDPOINT_API}/emails/notification-admin`;
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify(user)
+            });
+            if (!response.ok) {
+                console.log(response);
+                return;
+            }
+            toast.success('Se les ha notificado a los admin tu interes en organizar un torneo y se pondran en contacto contigo.', {
+                duration: 10000,
+                position: 'top-center',
+            })
+        } catch (error) {
+            toast.error('Hubo un error al enviar la notificación a los admin', {
+                duration: 6000,
+                position: 'top-center',
+            })
+        } finally {
+            setLoadingEmail(false);
+        }
+    }
+
     return (
         <>
             <div className="min-h-screen">
+                <button 
+                    className="ease-in-up rounded-md bg-primary py-2 px-8 text-base font-bold text-white transition duration-300 hover:bg-opacity-90 hover:shadow-signUp md:px-9 lg:px-6 xl:px-9 mb-6"
+                    onClick={() => sendNotificationEmail(user)}
+                    disabled={loadingEmail}
+                >
+                    Quiero organizar mi propio torneo
+                </button>
                 {loading ? (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 py-5">
                         {[1, 2, 3, 4, 5, 6].map((item: number) => (

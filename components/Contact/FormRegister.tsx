@@ -195,7 +195,6 @@ const FormRegister = ({ tournament, showForm }: {
       toast.success('Tu registro fue enviado', {
         duration: 6000,
         position: 'top-center',
-
       })
       formik.resetForm();
       return response.json();
