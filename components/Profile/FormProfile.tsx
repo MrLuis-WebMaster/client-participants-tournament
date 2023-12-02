@@ -5,6 +5,7 @@ import { useContext, useState } from 'react';
 import * as Yup from 'yup';
 import toast from 'react-hot-toast';
 import { ContextAuth } from '../Providers/ContextAuth';
+import useNavigation from '@/hooks/useNavigation';
 
 
 const validationSchema = Yup.object().shape({
@@ -23,6 +24,8 @@ const validationSchema = Yup.object().shape({
 const FormProfile = () => {
     const [loading, setLoading] = useState<boolean>(false)
     const { token, user } = useContext(ContextAuth);
+    const { searchParams, router } = useNavigation();
+    
     async function postData(url = '', data = {}) {
         try {
             setLoading(true)
@@ -43,6 +46,10 @@ const FormProfile = () => {
 
             })
             setTimeout(() => {
+                if (searchParams.get('redirect_url').length) {
+                    router.push(`${searchParams.get('redirect_url')}?redirect=true`)
+                    return;
+                }
                 window.location.reload();
             }, 1000)
             return response.json();

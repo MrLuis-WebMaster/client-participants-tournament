@@ -32,6 +32,7 @@ const useNavigation = () => {
     searchParams,
     createQueryString,
     navigateWithQueryParam,
+    router
   };
 };
 

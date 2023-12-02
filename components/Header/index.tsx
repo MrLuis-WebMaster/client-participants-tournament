@@ -160,7 +160,7 @@ const Header = () => {
                 </nav>
               </div>
               <div className="flex items-center justify-end pr-16 lg:pr-0">
-                {((!user?.fullName.length && (status !== "unauthenticated") ) || status === "loading") && (
+                {((!user?.fullName?.length && (status !== "unauthenticated") ) || status === "loading") && (
                   <div role="status" className="hidden max-w-sm animate-pulse md:block">
                       <div className="rounded-md bg-body-color w-44 md:px-9 lg:px-6 xl:px-9 h-10"></div>
                       <span className="sr-only">Loading...</span>

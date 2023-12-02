@@ -1,13 +1,13 @@
 
 "use client"
 import { useFormik } from 'formik';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import * as Yup from 'yup';
 import toast from 'react-hot-toast';
 import { ContextAuth } from '../Providers/ContextAuth';
 import { signIn } from 'next-auth/react';
 import Link from 'next/link';
-
+import { useRouter } from 'next/navigation';
 const BG = () => {
   return (
     <div className="absolute top-0 left-0 z-[-1]">
@@ -269,8 +269,8 @@ const FormRegister = ({ tournament, showForm }: {
               <div className='flex flex-col gap-3 mt-24'>
                 <p className='text-2xl text-center'>Actualiza los datos de tu perfil, para continuar con el registro.</p>
                 <Link
-                  href="/account/profile"
-                  className="ease-in-up hidden rounded-md bg-primary py-2 px-8 text-base font-bold text-white transition duration-300 hover:bg-opacity-90 hover:shadow-signUp md:block md:px-9 lg:px-6 xl:px-9 text-center"
+                  href={`/account/profile?redirect_url=/inscripcion/${tournament.name}/${tournament.id}/${tournament.game}`}
+                  className="ease-in-up rounded-md bg-primary py-2 px-8 text-base font-bold text-white transition duration-300 hover:bg-opacity-90 hover:shadow-signUp md:block md:px-9 lg:px-6 xl:px-9 text-center"
                 >
                   Actualizar perfil
                 </Link>
@@ -470,7 +470,7 @@ const FormRegister = ({ tournament, showForm }: {
                 <p className='text-2xl text-center'>Inicia sesión para poder registrarte.</p>
                 <button
                   onClick={() => signIn('google')}
-                  className="ease-in-up hidden rounded-md bg-primary py-2 px-8 text-base font-bold text-white transition duration-300 hover:bg-opacity-90 hover:shadow-signUp md:block md:px-9 lg:px-6 xl:px-9"
+                  className="ease-in-up rounded-md bg-primary py-2 px-8 text-base font-bold text-white transition duration-300 hover:bg-opacity-90 hover:shadow-signUp md:block md:px-9 lg:px-6 xl:px-9"
                 >
                   Iniciar Sesión
                 </button>

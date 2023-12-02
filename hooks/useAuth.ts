@@ -1,8 +1,8 @@
 "use client";
 import { useEffect, useState, useMemo, useCallback } from 'react';
-import { useSession } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
 import { Session } from 'next-auth';
-
+import useNavigation from './useNavigation';
 
 interface User {
   id: number;
@@ -21,9 +21,11 @@ interface AuthHookResult {
 
 const useAuth = (): AuthHookResult => {
   const sessionData = useSession();
+  const { searchParams, router, pathname } = useNavigation();
   const { data: session, status } = useMemo(() => sessionData, [sessionData]);
   const [token, setToken] = useState<string>("");
   const [user, setUser] = useState<User | null>(null);
+  const [redirectQuery, setRedirectQuery] = useState<string>(searchParams.get('redirect'));
 
   const checkAuth = useCallback(async () => {
     if (session?.user?.name) {
@@ -46,8 +48,13 @@ const useAuth = (): AuthHookResult => {
             'Authorization': `Bearer ${newToken}`
           },
         });
-
+        
         const newUser: User = await userResponse.json();
+
+        if (!newUser?.fullName && session) {
+          signOut({callbackUrl: '/'})
+        }
+
         setUser(newUser);
       }
     }
@@ -58,6 +65,20 @@ const useAuth = (): AuthHookResult => {
       checkAuth();
     }
   }, [status, checkAuth]);
+
+  useEffect(() => {
+    setRedirectQuery(searchParams.get('redirect'))
+    console.log(redirectQuery)
+    if (status === "authenticated" && (redirectQuery === 'true')) {
+      console.log('entra solo cuando hay un redirect = true')
+      checkAuth();
+      router.push(pathname)
+    }
+    return () => {
+      setRedirectQuery('')
+    }
+  }, [status, checkAuth, redirectQuery, pathname, searchParams, router]);
+
 
   return { session, status, token, user };
 };
