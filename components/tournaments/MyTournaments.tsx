@@ -7,7 +7,6 @@ import CardRegisterTournament from "@/app/account/components/CardRegisterTournam
 import User from "@/types/User";
 import toast from "react-hot-toast";
 
-
 const MyTournamentPageComponent = () => {
     const { navigateWithQueryParam, searchParams } = useNavigation();
     const [currentPage, setCurrentPage] = useState<number>(Number(searchParams.get('page')) || 1);
@@ -99,6 +98,68 @@ const MyTournamentPageComponent = () => {
         }
     }
 
+    
+    const handleDelete = (tournamentId:number) => {
+        toast((t) => (
+            <span>
+                <p className='text-xl mb-3'>
+                    ¿Estas seguro de querer eliminar tu registro?
+                </p>
+                <div className='flex gap-2'>
+                    <button 
+                        className="w-[50%] text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 font-medium rounded-lg text-base px-5 py-2.5  dark:text-dark dark:hover:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600"
+                        onClick={() => toast.dismiss(t.id)}
+                    >
+                        Cancelar
+                    </button>
+                    <button 
+                        className="w-[50%] focus:outline-none text-white bg-red-700 hover:bg-red-800 font-medium rounded-lg text-base px-5 py-2.5 dark:bg-red-600 dark:hover:bg-red-700"
+                        onClick={() => handleDeleteConfirm(t.id, tournamentId)}
+                    >
+                        Aceptar
+                    </button>
+                </div>
+            </span>
+        ), {
+            id: 'warning',
+            icon: '⚠️',
+            duration: 50000
+        });
+    }
+
+    const handleDeleteConfirm = (id: string, tournamentId:number) => {
+        toast.dismiss(id)
+        setLoading(true)
+        const fetchDelete = async ():Promise<unknown> => {
+            try {                
+                const url = `${process.env.NEXT_PUBLIC_ENDPOINT_API}/tournament-participant/${tournamentId}/${user?.id}`;
+                const response = await fetch(url, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify(user)
+                });
+                return response;
+            } catch (error) {
+                console.log(error)
+            } finally {
+                setLoading(false)
+            }
+        };
+
+        toast.promise(fetchDelete(), {
+            loading: 'Borrando...',
+            success: () => {
+                fetchData(currentPage);
+                return 'Registro eliminado';
+            },
+            error: 'Ups, hubo un error, si el error persiste ponte en contacto con soporte.',
+        });
+    }
+
+
     return (
         <>
             <div className="min-h-screen">
@@ -107,7 +168,7 @@ const MyTournamentPageComponent = () => {
                     onClick={() => sendNotificationEmail(user)}
                     disabled={loadingEmail}
                 >
-                    Quiero organizar mi propio torneo
+                    Me gustaria organizar mi propio torneo
                 </button>
                 {loading ? (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 py-5">
@@ -128,7 +189,7 @@ const MyTournamentPageComponent = () => {
                                 {
                                     registers.map((register: any) => {
                                         return (
-                                            <CardRegisterTournament key={register.tournament.id} register={register} />
+                                            <CardRegisterTournament key={register.tournament.id} register={register} handleDelete={() => handleDelete(register.tournament.id)} />
                                         )
                                     })
                                 }

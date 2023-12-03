@@ -3,9 +3,10 @@ import React, { ChangeEvent, useState } from 'react';
 
 interface CardRegisterTournamentProps {
     register: any
+    handleDelete: () => void
 }
 
-const CardRegisterTournament = ({ register }: CardRegisterTournamentProps) => {
+const CardRegisterTournament = ({ register, handleDelete }: CardRegisterTournamentProps) => {
     const [activeTab, setActiveTab] = useState<string>('register');
 
     const handleTabClick = (tabId: string) => {
@@ -16,7 +17,7 @@ const CardRegisterTournament = ({ register }: CardRegisterTournamentProps) => {
     };
 
     return (
-        <div className="w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 h-72">
+        <div className="w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 h-72 flex flex-col">
             <div className="sm:hidden">
                 <label htmlFor="tabs" className="sr-only">
                     Select tab
@@ -137,6 +138,19 @@ const CardRegisterTournament = ({ register }: CardRegisterTournamentProps) => {
                     <p> Celular: {register.tournament.phoneOrganizer}</p>
                     <p> Correo: {register.tournament.emailOrganizer} </p>
                 </div>
+            </div>
+            <div className='flex items-center justify-end p-4 mt-auto'>
+                {
+                    !register.isPaid && (
+                        <button
+                            onClick={handleDelete}
+                            type="button"
+                            className="focus:outline-none text-white bg-red-700 hover:bg-red-800 font-medium rounded-lg text-base px-5 py-2.5 dark:bg-red-600 dark:hover:bg-red-700"
+                        >
+                            <i className='bx bx-trash'></i>
+                        </button>
+                    )
+                }
             </div>
         </div>
     );
