@@ -9,8 +9,8 @@ import Card from "@/components/cards";
 
 import type { Metadata } from 'next'
 export const metadata: Metadata = {
-  title: 'FreshWar Torneo | Inicio',
-  description: 'FreshWar Torneo',
+  title: 'FreshWar | Inicio',
+  description: 'FreshWar',
 }
 
 export default function Home() {

@@ -1,3 +1,5 @@
+"use client";
+
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid';
 
 export default function Pagination({
@@ -38,16 +40,15 @@ export default function Pagination({
       </button>
       <div className="flex items-center space-x-2">
         {pagesToDisplay.map((p) => (
-          <a
+          <button
             key={p}
-            href="#"
             onClick={() => {goToPage(p)}}
-            className={`relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 ${
-              p === page ? 'bg-indigo-600 text-white bg-primary' : ''
+            className={`relative inline-flex items-center px-4 py-2 text-sm font-semibold text-white ring-1 ring-inset ring-gray-300 hover:bg-gray-50 hover:text-dark focus:z-20 focus:outline-offset-0 ${
+              p === page ? 'bg-primary' : ''
             }`}
           >
             {p}
-          </a>
+          </button>
         ))}
       </div>
       <button

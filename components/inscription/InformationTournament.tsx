@@ -38,12 +38,12 @@ const InformationTournament = ({ tournament }: any) => {
                 </div>
                 <div className='p-8 sm:p-11 lg:p-8 xl:p-11'>
                     <h3 className="text-4xl font-semibold leading-7 text-primary">{tournament.name}</h3>
-                    <p className="mt-1 max-w-2xl text-sm leading-6 text-gray-500">Información detallada del torneo</p>
+                    <p className="mt-1 max-w-2xl text-sm leading-6">Información detallada del torneo</p>
                     <div className="mt-6 border-y border-gray-100">
                         <dl className="divide-y divide-gray-100">
                             <div className="py-3 sm:grid sm:grid-cols-3 sm:gap-4">
-                                <dt className="text-sm font-medium leading-6 text-gray-900">Juego</dt>
-                                <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                                <dt className="text-sm font-medium leading-6">Juego</dt>
+                                <dd className="mt-1 text-sm leading-6 sm:col-span-2 sm:mt-0">
                                     <span className='flex items-center'>
                                         <PuzzlePieceIcon className="w-4 h-4 mr-2" />
                                         {tournament.game}
@@ -51,12 +51,12 @@ const InformationTournament = ({ tournament }: any) => {
                                 </dd>
                             </div>
                             <div className="py-3 sm:grid sm:grid-cols-3 sm:gap-4">
-                                <dt className="text-sm font-medium leading-6 text-gray-900">Formato</dt>
-                                <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0 capitalize">{tournament.format}</dd>
+                                <dt className="text-sm font-medium leading-6">Formato</dt>
+                                <dd className="mt-1 text-sm leading-6 sm:col-span-2 sm:mt-0 capitalize">{tournament.format}</dd>
                             </div>
                             <div className="py-3 sm:grid sm:grid-cols-3 sm:gap-4">
-                                <dt className="text-sm font-medium leading-6 text-gray-900">Inscripción</dt>
-                                <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                                <dt className="text-sm font-medium leading-6">Inscripción</dt>
+                                <dd className="mt-1 text-sm leading-6  sm:col-span-2 sm:mt-0">
 
                                     <span className='flex items-center'>
                                         <CurrencyDollarIcon className="w-4 h-4 mr-2" />
@@ -65,8 +65,8 @@ const InformationTournament = ({ tournament }: any) => {
                                 </dd>
                             </div>
                             <div className="py-3 sm:grid sm:grid-cols-3 sm:gap-4">
-                                <dt className="text-sm font-medium leading-6 text-gray-900">Cantidad de participantes</dt>
-                                <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                                <dt className="text-sm font-medium leading-6">Cantidad de participantes</dt>
+                                <dd className="mt-1 text-sm leading-6 sm:col-span-2 sm:mt-0">
                                     <span className='flex items-center'>
                                         <UserIcon className="w-4 h-4 mr-2" />
                                         {tournament.maxParticipants}
@@ -74,7 +74,7 @@ const InformationTournament = ({ tournament }: any) => {
                                 </dd>
                             </div>
                             <div className="py-3 sm:grid sm:grid-cols-3 sm:gap-4">
-                                <dt className="text-sm font-medium leading-6 text-gray-900">Reglas</dt>
+                                <dt className="text-sm font-medium leading-6">Reglas</dt>
                                 <dd className="mt-1 text-sm leading-6 sm:col-span-2 sm:mt-0">
                                     <span className="flex items-center">
                                         <LinkIcon className="w-4 h-4 mr-2" />
@@ -85,8 +85,8 @@ const InformationTournament = ({ tournament }: any) => {
                                 </dd>
                             </div>
                             <div className="py-3 sm:grid sm:grid-cols-3 sm:gap-4">
-                                <dt className="text-sm font-medium leading-6 text-gray-900">Premios</dt>
-                                <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                                <dt className="text-sm font-medium leading-6">Premios</dt>
+                                <dd className="mt-1 text-sm leading-6 sm:col-span-2 sm:mt-0">
                                     <span className='flex items-center'>
                                         <GiftIcon className="w-4 h-4 mr-2 shrink-0" />
                                         <div
@@ -96,18 +96,18 @@ const InformationTournament = ({ tournament }: any) => {
                                 </dd>
                             </div>
                             <div className="py-3 sm:grid sm:grid-cols-3 sm:gap-4">
-                                <dt className="text-sm font-medium leading-6 text-gray-900">Fecha</dt>
-                                <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0 capitalize">{fullFormattedDateTime(tournament.dateTime)}</dd>
+                                <dt className="text-sm font-medium leading-6">Fecha</dt>
+                                <dd className="mt-1 text-sm leading-6 sm:col-span-2 sm:mt-0 capitalize">{fullFormattedDateTime(tournament.dateTime)}</dd>
                             </div>
                             <div className="py-3 sm:grid sm:grid-cols-3 sm:gap-4">
-                                <dt className="text-sm font-medium leading-6 text-gray-900">Estado</dt>
-                                <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                                <dt className="text-sm font-medium leading-6">Estado</dt>
+                                <dd className="mt-1 text-sm leading-6 sm:col-span-2 sm:mt-0">
                                     <TournamentStatus status={tournament.status} />
                                 </dd>
                             </div>
                             <div className="py-3 sm:grid sm:grid-cols-3 sm:gap-4">
-                                <dt className="text-sm font-medium leading-6 text-gray-900">Nombre del Organizador</dt>
-                                <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                                <dt className="text-sm font-medium leading-6">Nombre del Organizador</dt>
+                                <dd className="mt-1 text-sm leading-6 sm:col-span-2 sm:mt-0">
                                     <span className='flex items-center'>
                                         <UserIcon className="w-4 h-4 mr-2" />
                                         {tournament.nameOrganizer}
@@ -115,8 +115,8 @@ const InformationTournament = ({ tournament }: any) => {
                                 </dd>
                             </div>
                             <div className="py-3 sm:grid sm:grid-cols-3 sm:gap-4">
-                                <dt className="text-sm font-medium leading-6 text-gray-900">Correo del Organizador</dt>
-                                <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                                <dt className="text-sm font-medium leading-6">Correo del Organizador</dt>
+                                <dd className="mt-1 text-sm leading-6 sm:col-span-2 sm:mt-0">
                                     <span className="flex items-center">
                                         <AtSymbolIcon className="w-4 h-4 mr-2" />
                                         <a className='text-primary' href={`mailto:${tournament.emailOrganizer}`}>
@@ -126,8 +126,8 @@ const InformationTournament = ({ tournament }: any) => {
                                 </dd>
                             </div>
                             <div className="py-3 sm:grid sm:grid-cols-3 sm:gap-4">
-                                <dt className="text-sm font-medium leading-6 text-gray-900"># Celular del Organizador</dt>
-                                <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                                <dt className="text-sm font-medium leading-6"># Celular del Organizador</dt>
+                                <dd className="mt-1 text-sm leading-6  sm:col-span-2 sm:mt-0">
                                     <span className='flex items-center'>
                                         <DevicePhoneMobileIcon className="w-4 h-4 mr-2" />
                                         {tournament.phoneOrganizer}
@@ -136,7 +136,7 @@ const InformationTournament = ({ tournament }: any) => {
                             </div>
                         </dl>
                     </div>
-                    <p className="mt-1 max-w-2xl text-sm leading-6 text-gray-500" dangerouslySetInnerHTML={{ __html: tournament.description }} />
+                    <p className="mt-1 max-w-2xl text-sm leading-6" dangerouslySetInnerHTML={{ __html: tournament.description }} />
                 </div>
             </div>
         </>

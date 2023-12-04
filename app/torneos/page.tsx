@@ -3,8 +3,8 @@ import type { Metadata } from 'next'
 
 import TorneoPageComponent from "@/components/tournaments/Tournaments";
 export const metadata: Metadata = {
-  title: 'FreshWar Torneo | Torneos',
-  description: 'FreshWar Torneos',
+  title: 'FreshWar | Torneos',
+  description: 'FreshWars',
 }
 
 const TorneoPage = () => {
