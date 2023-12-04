@@ -257,7 +257,7 @@ const FormRegister = ({ tournament, showForm }: {
         Formulario de Inscripción para {tournament.name} ({tournament.game})
       </h3>
       {
-        status === "loading" || (status !== "loading" && !user)
+          ((!user?.fullName?.length && (status !== "unauthenticated") ) || status === "loading")
           ? (
             <>
               <div role="status" className="w-full animate-pulse md:block">
