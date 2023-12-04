@@ -2,8 +2,8 @@
 import type { Metadata } from 'next'
 import Breadcrumb from '@/components/Common/Breadcrumb';
 export const metadata: Metadata = {
-    title: 'FreshWar Torneo | Politica de privacidad',
-    description: 'FreshWar Torneo',
+    title: 'FreshWar | Politica de privacidad',
+    description: 'FreshWar',
 }
 const PagePrivacyPolicy = () => {
     return (

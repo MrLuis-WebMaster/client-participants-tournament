@@ -4,8 +4,9 @@ import { Analytics } from '@vercel/analytics/react';
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import ScrollToTop from "@/components/ScrollToTop";
-import ButtonFloat from "@/components/Common/ButtonFloat";
 import { Toaster } from 'react-hot-toast';
+import ProviderAuth from '@/components/Providers/ProviderAuth';
+import { Providers } from "./providers";
 
 import "node_modules/react-modal-video/css/modal-video.css";
 import "../styles/index.css";
@@ -27,12 +28,13 @@ export default function RootLayout({
 
       <body className="dark:bg-black">
         <Providers>
-          <Header />
-          {children}
-          <Footer />
-          <ScrollToTop />
-          <ButtonFloat />
-          <Toaster />
+          <ProviderAuth>
+            <Header />
+            {children}
+            <Footer />
+            <ScrollToTop />
+            <Toaster />
+          </ProviderAuth>
         </Providers>
         <Analytics />
       </body>
@@ -40,4 +42,4 @@ export default function RootLayout({
   );
 }
 
-import { Providers } from "./providers";
+
